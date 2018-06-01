@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>KYC :: Mashreqbank</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="KYC portal for Mashreqbank customers. self kyc update form"/>
+        <link rel="preload" as="image" href="resources/img/mashreqlogo1.png">
+        <link rel="preload" as="script" href="resources/js/jquery.min.js" />
+        <!--<link rel="preload" as="script" href="resources/js/jquery.validate.js" />-->
+        <link rel="preload" as="script" href="resources/js/bootstrap.min.js" />
+        
+        <link rel="preload" as="script" href="resources/js/kyc-lib.js">
+        <!-- <link rel="preload" as="style" href="resources/css/kyc.css"> -->
+        <link href="resources/css/kyc.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="resources/js/bootstrap.min.js" defer=""></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="resources/js/jquery.min.js" ></script> 
+        <!--<script src="resources/js/jquery.validate.js"></script>-->
+        
+
+
+        
+        <script src="resources/js/kyc-lib.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css" />
+        
+
+
+
+        <!-- <link rel="preload" as="style" href="resources/css/bootstrap.min.css">
+<link rel="preload" as="style" href="resources/css/kyc.css">
+        <link rel="preload" as="script" href="resources/js/bootstrap.min.js">
+<link rel="preload" as="script" href="resources/js/jquery.min.js">
+
+<link rel="preload" as="script" href="resources/js/kyc.lib.js">
+<link rel="preload" as="image" href="resources/img/mashreqlogo1.png">
+        <script src="resources/js/bootstrap.min.js" defer=""></script>
+        
+        <script src="resources/js/jquery.min.js" ></script>
+        <script src="resources/js/jquery.validate.js"></script>
+        -->
+
+
+
+
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script> -->
+
+
+
+        <style>
+            @font-face {
+
+                font-family: Gill Sans;
+                src: url(resources/fonts/GillSans.ttc);
+            }
+            .company-details p{
+                font-size: 16px;
+                font-weight: lighter;
+                color: #888;
+                width: 350px;
+            }
+            .btn-group input[type="radio"], input[type="checkbox"]{
+                margin: 10px 5px 0px;
+                margin-left: 0px;
+            }
+            p{
+                font-family: "Gill Sans", "Gill Sans MT", sans-serif;
+            }
+            .round-tab h2{
+                line-height: 24px;
+                font-size: 22px;
+            }
+            .company-business p{
+                margin-top: 20px;
+            }
+
+            .kyc-form1-detail li {
+
+                padding: 0px 20px;
+
+            }
+
+            .kyc-form1-detail  li button , prev-step{
+                padding: 10px 30px;
+                color: #fff;
+                border-color: rgba(38, 75, 159, 0.5);
+                background-color: rgba(38, 75, 159, 0.5);
+                font-size: 15px;
+            }
+            .prev-step:hover{
+                background-color: #286090 !important;
+                border-color: #204d74 !important;
+                color: #fff !important;
+            }
+
+            textarea.form-control{
+                border-bottom: 1px solid #264b9f;
+                border-left: 0px transparent;
+                border-right: 0px transparent;
+                border-top: 0px transparent;
+                line-height: 2em;
+                height: initial;
+            }
+            #kyc-business-detail textarea{
+                height: unset;
+            }
+
+            .company-business{
+
+
+            }
+
+            .wizard {
+                margin: 0px auto;
+                background: #fff;
+            }
+
+            .wizard .nav-tabs {
+                position: relative;
+                margin: 0px auto;
+                margin-bottom: 0;
+                border-bottom-color: #e0e0e0;
+            }
+
+            .wizard > div.wizard-inner {
+                position: relative;
+            }
+
+            .connecting-line {
+                height: 2px;
+                background: #e0e0e0;
+                position: absolute;
+                width: 70%;
+                margin: 0 auto;
+                left: 0;
+                right: 0%;
+                top: 50%;
+                z-index: 1;
+            }
+
+            .wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+                color: #555555;
+                cursor: default;
+                border: 0;
+                border-bottom-color: transparent;
+            }
+
+            span.round-tab {
+                width: 70px;
+                height: 70px;
+                line-height: 70px;
+                display: inline-block;
+                border-radius: 100px;
+                background: #fff;
+                border: 2px solid #64c3df;
+                background-color: #64c3df;
+                z-index: 2;
+                position: absolute;
+                left: 0;
+                text-align: center;
+                font-size: 25px;
+            }
+            span.round-tab i{
+                color:#555555;
+            }
+            .wizard li.active span.round-tab {
+                background: #fff;
+                border: 2px solid #5bc0de;
+
+            }
+            .wizard li.active span.round-tab i{
+                color: #5bc0de;
+            }
+
+            span.round-tab:hover {
+                color: #333;
+                border: 2px solid #333;
+            }
+
+            .wizard .nav-tabs > li {
+                width: 33%;
+            }
+
+            .wizard li:after {
+                content: " ";
+                position: absolute;
+                left: 46%;
+                opacity: 0;
+                margin: 0 auto;
+                bottom: 0px;
+                border: 5px solid transparent;
+                border-bottom-color: #5bc0de;
+                transition: 0.1s ease-in-out;
+            }
+
+            .wizard li.active:after {
+                content: " ";
+                position: absolute;
+                left: 46%;
+                opacity: 1;
+                margin: 0 auto;
+                bottom: 0px;
+                border: 10px solid transparent;
+                border-bottom-color: #5bc0de;
+            }
+
+            .wizard .nav-tabs > li a {
+                width: 70px;
+                height: 70px;
+                margin: 20px auto;
+                border-radius: 100%;
+                padding: 0;
+            }
+
+            .wizard .nav-tabs > li a:hover {
+                background: transparent;
+            }
+
+            .wizard .tab-pane {
+                position: relative;
+                padding-top: 50px;
+            }
+
+            .wizard h3 {
+                margin-top: 0;
+            }
+            .step1 .row {
+                margin-bottom:10px;
+            }
+            .step1{
+                border :1px solid #eee;
+            }
+            .step_21 {
+                border :1px solid #eee;
+                border-radius:5px;
+                <!-- padding:10px; -->
+            }
+            .step33 {
+                border:1px solid #ccc;
+                border-radius:5px;
+                padding-left: 0px;
+                margin-bottom:10px;
+            }
+            .dropselectsec {
+                width: 68%;
+                padding: 6px 5px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                color: #333;
+                margin-left: 10px;
+                outline: none;
+                font-weight: normal;
+            }
+            .dropselectsec1 {
+                width: 74%;
+                padding: 6px 5px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                color: #333;
+                margin-left: 10px;
+                outline: none;
+                font-weight: normal;
+            }
+            .mar_ned {
+                margin-bottom:10px;
+            }
+            .wdth {
+                width:25%;
+            }
+            .birthdrop {
+                padding: 6px 5px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                color: #333;
+                margin-left: 10px;
+                width: 16%;
+                outline: 0;
+                font-weight: normal;
+            }
+
+
+            /* according menu */
+            #accordion-container {
+                font-size:13px
+            }
+            .accordion-header {
+                font-size:13px;
+                background:#ebebeb;
+                margin:5px 0 0;
+                padding:7px 20px;
+                cursor:pointer;
+                color:#fff;
+                font-weight:400;
+                -moz-border-radius:5px;
+                -webkit-border-radius:5px;
+                border-radius:5px
+            }
+            .unselect_img{
+                width:18px;
+                -webkit-user-select: none;  
+                -moz-user-select: none;     
+                -ms-user-select: none;      
+                user-select: none; 
+            }
+            .active-header {
+                -moz-border-radius:5px 5px 0 0;
+                -webkit-border-radius:5px 5px 0 0;
+                border-radius:5px 5px 0 0;
+                background:#F53B27;
+            }
+            .active-header:after {
+                content:"\f068";
+                font-family:'FontAwesome';
+                float:right;
+                margin:5px;
+                font-weight:400
+            }
+            .inactive-header {
+                background:#333;
+            }
+            .inactive-header:after {
+                content:"\f067";
+                font-family:'FontAwesome';
+                float:right;
+                margin:4px 5px;
+                font-weight:400
+            }
+            .accordion-content {
+                display:none;
+                padding:20px;
+                background:#fff;
+                border:1px solid #ccc;
+                border-top:0;
+                -moz-border-radius:0 0 5px 5px;
+                -webkit-border-radius:0 0 5px 5px;
+                border-radius:0 0 5px 5px
+            }
+            .accordion-content a{
+                text-decoration:none;
+                color:#333;
+            }
+            .accordion-content td{
+                border-bottom:1px solid #dcdcdc;
+            }
+
+
+
+            @media( max-width : 585px ) {
+
+                .wizard {
+                    width: 90%;
+                    height: auto !important;
+                }
+
+                span.round-tab {
+                    font-size: 16px;
+                    width: 50px;
+                    height: 50px;
+                    line-height: 50px;
+                }
+
+                .wizard .nav-tabs > li a {
+                    width: 50px;
+                    height: 50px;
+                    line-height: 50px;
+                }
+
+                .wizard li.active:after {
+                    content: " ";
+                    position: absolute;
+                    left: 35%;
+                }
+            }
+
+
+            .mashreq-logo {
+                border-bottom: 1px solid #1b429a;
+            }
+            .mashreq-logo img {
+                padding: 15px;
+                width: 350px;
+            }
+            .kyc-head-detail p {
+                padding: 15px 0px;
+            }
+
+
+            .noOverFLow {
+                overflow: hidden;
+            }
+
+            div#blocker {
+                position: fixed;
+                left: 0;
+                top : 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 10;
+                opacity: 0.9;
+                transition: all 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+                text-align: center;
+                background: white;
+            }
+
+            #wait {
+                position: relative;
+                top: 30%;
+            }
+
+            #wait>* {
+                position: relative;
+            }
+
+            #wait>span {
+                position: relative;
+                top: -15px;
+                left: 45px;
+            }
+
+            #wait>div {
+                left: -45px;
+                position: relative;
+            }
+
+            .dots {
+                display: inline-block;
+                animation: sunRise 1s alternate linear infinite;
+                box-shadow: 0px 0px 0px 1px white;
+                background: linear-gradient(45deg, #ffd900, #ef433c);
+                position: relative;
+                border-radius: 100% 0%;
+                opacity: 0;
+            }
+
+            @keyframes sunRise {
+                0% {
+                    opacity: 0;
+                }
+
+                49% {
+                    opacity: 0;
+                }
+
+                50% {
+                    opacity: 1;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+            @media only screen and (max-width: 767px){
+                .round-tab h2 {
+                    line-height: 5px;
+                    font-size: 22px;
+                }
+                .trade-licence-cashtb, .trade-licence-cashtb-share {
+                    overflow-x: auto;
+                }
+                .kyc-revenue-capital {
+                    padding: 0px !important;
+                }
+            }     
+
+
+
+
+
+
+
+        </style>
+    </head>
+    <body>
+        <!-- <div id="blocker" style="">
+                    <div id="wait">
+                        <div>
+                            <div class="dots" style="animation-duration: 3s; animation-delay: -1.5s;transform: rotate(-135deg);top: 38px;left: 0px;width: 60px;height: 60px;"></div>
+                            <div class="dots" style="animation-duration: 3s; animation-delay: -1.0s;transform: rotate(-100deg);top: -1px;left: -43px;width: 50px;height: 50px;"></div>
+                            <div class="dots" style="animation-duration: 3s; animation-delay: -0.5s;transform: rotate(-070deg);top: -20px;left: -65px;width: 40px;height: 40px;"></div>
+                            <div class="dots" style="animation-duration: 3s; animation-delay: 00.0s;transform: rotate(-045deg);top: -25px;left: -80px;width: 30px;height: 30px;"></div>
+                            <div class="dots" style="animation-duration: 3s; animation-delay: 00.5s; transform: rotate(-010deg);top: -19px;left: -93px;width: 20px;height: 20px;"></div>
+                            <div class="dots" style="animation-duration: 3s; animation-delay: 01.0s;transform: rotate(0020deg);top: -12px;left: -106px;width: 10px;height: 10px;"></div>
+                        </div>
+                        <span>Please wait while the page is loaded</span>
+                    </div>
+                </div> -->
+
+        <div class="mashreq-logo">
+            <img class="img-responsive" src="resources/img/mashreqlogo1.png"></img>
+        </div>
+        <div class="container">
+            <div class="kyc-head-detail trade-licence-text">
+                <p>
+                    Marsheq has provided innovative banking and financial services to millions of individuals and institutions since 1967.One of the UAE's best performing banks for 
+                    five decades.Mashreq is a leading financial institution in the Middle east, with a growing retail presence across the region.We also have international offices
+                    in Europe, Asia, Africa and the Us,and a presence in all the financial capitals of the world.
+                </p>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="row">
+                <section>
+                    <div class="wizard">
+                        <div class="wizard-inner">
+                            <div class="connecting-line"></div>
+                            <ul class="nav nav-tabs" role="tablist">
+
+                                <li role="presentation" class="active">
+                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                        <span class="round-tab">
+                                            <h2>1</h2>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation" class="disabled">
+                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                        <span class="round-tab">
+                                            <h2>2</h2>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="disabled">
+                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                        <span class="round-tab">
+                                            <h2>3</h2>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <form role="form" id="" name="" action="" method="post">
+                            <div class="tab-content">
+                                <form role="" name="form-one" id="form-one">
+                                    <div class="tab-pane active" role="tabpanel" id="step1">
+                                        <div class="step1">
+
+                                            <div class="row">
+
+                                                <div id="mainCont" class="container">
+
+
+
+                                                    <div class="row company-details">
+                                                        <div class="kyc-com-countries">
+
+                                                            <div class="col-md-6">
+                                                                <div class="kyc-company">
+                                                                    <p>Company Name*</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <p>Do you deal with HIGH RISK countries such as Iran, syria, sudan etc?*</p>
+                                                                <div class="input-group" data-toggle="buttons">
+                                                                    <div class="btn-group">
+                                                                        <label class="" style="padding-right: 15px;">
+                                                                            <input type="radio" name="HighRisk" value="Y"><strong>Yes</strong>
+
+                                                                        </label>
+                                                                        <label class="">
+                                                                            <input type="radio" name="HighRisk" value="N" checked><strong>No</strong>
+
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+                                                        <div class="row company-business">
+                                                            <div class="col-md-6">
+                                                                <p>Is there any relationship involving Political Exposure:*</p>
+
+                                                                <div class="input-group">
+                                                                    <div class="btn-group" data-toggle="buttons">
+                                                                        <label class="" style="padding-right: 15px;">
+                                                                            <input type="radio" name="PolEx" value="Y"><strong>Yes</strong>
+                                                                        </label>
+                                                                        <label class="active">
+                                                                            <input type="radio" name="PolEx" value="N" checked><strong style="color: #000;">No</strong>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                            <div class="col-md-6">
+
+                                                                <p>Nature of Business:*</p>
+
+                                                                <div class="" id="kyc-business-detail">
+                                                                    <textarea class="form-control" placeholder="" rows="1" id="bs" name="bs" ></textarea>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+
+
+                                                    <div class="row">
+                                                        <div class="col-xs-12 form-group" style="display: none;">
+                                                            <label class="col-sm-6 col-xs-12">Is there any relationship involving Political Exposure:*</label>
+                                                            <div class="input-group">
+                                                                <div class="btn-group" data-toggle="buttons">
+                                                                    <label class="">
+                                                                        <input type="radio" name="PolEx" value="Y">Yes
+
+
+
+                                                                    </label>
+                                                                    <label class="active">
+                                                                        <input type="radio" name="PolEx" value="N">No
+
+
+
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-xs-12 " id="PolExName" style="display: none;">
+                                                            <label class="col-sm-6 col-xs-12">
+                                                                Fullname of said person <small>as per his/her passport</small>
+                                                            </label>
+                                                            <div class="col-sm-6 col-xs-12 input-group">
+                                                                <input class="form-control" autocomplete="off" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 form-group" style="display: none;">
+                                                            <label class="col-sm-6 col-xs-12">
+                                                                Do you deal with HIGH RISK countries? <small>like: Iran, Syria, Sudan etc.</small>
+                                                            </label>
+                                                            <div class="input-group" data-toggle="buttons">
+                                                                <div class="btn-group">
+                                                                    <label class="">
+                                                                        <input type="radio" name="HighRisk" value="Y">Yes
+
+                                                                    </label>
+                                                                    <label class="">
+                                                                        <input type="radio" name="HighRisk" value="N">No
+
+
+
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 form-group" style="display: none;">
+                                                            <label class="col-sm-6 col-xs-12">Nature of Business:*</label>
+                                                            <div class="col-sm-6 col-xs-12 input-group">
+                                                                <textarea class="form-control" placeholder="" rows="1" type="text" name=""></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="ksd" class="panel panel-primary">
+                                                        <div class="col-xs-12 col-md-4 panel-heading">
+                                                            <label class="">Key Supplier's Detail</label>
+                                                        </div>
+                                                        <table class="table table-bordered table-condensed table-responsive">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Full Name:*
+                                                                    </th>
+                                                                    <th>Address &amp;Country:*
+                                                                    </th>
+                                                                    <th>Website URL:*
+                                                                    </th>
+                                                                    <th>Line of Business:*
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="" required>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="" required>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="" type="url" required>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="" required>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="" type="url">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="" type="url">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div id="kcd" class="panel panel-primary">
+                                                        <div class="col-xs-12 col-md-4 panel-heading">
+                                                            <label class="">Key Customer's Detail</label>
+                                                        </div>
+                                                        <table class="table table-bordered table-condensed table-responsive">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Full Name:*
+                                                                    </th>
+                                                                    <th>Address &amp;Country:*
+                                                                    </th>
+                                                                    <th>Website URL:*
+                                                                    </th>
+                                                                    <th>Line of Business:*
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="" type="url">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="" type="url">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="" type="url">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="container">
+                                            <ul class="list-inline pull-right kyc-form1-detail ">
+                                                <li>
+                                                    <input class="btn btn-primary next-step" type="submit" value="Nxt">
+                                                    <button type="button" class="btn btn-primary next-step">NEXT</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="tab-pane" role="tabpanel" id="step2">
+                                    <div class="step2">
+                                        <div class="step_21">
+                                            <div class="row kyc-section-revenue">
+                                                <div id="mainCont" class="container">
+
+                                                    <div class="row ">
+                                                        <div class="col-sm-6 col-xs-12 kyc-revenue-business">
+                                                            <div class="form-group kyc-revenue-capital">
+                                                                <label class="control-label">Plese mention the Source of Funds for the Business*<p>(AED Equivalent Upto 2 decimal places)</p></label>
+                                                                <input class="form-control" type="text"></input>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-6 col-xs-12 kyc-revenue-capital">
+                                                            <div class="form-group kyc-revenue-capital">
+                                                                <label class="control-label">Capital*<p>(AED Equivalent Upto 2 decimal places)</p></label>
+                                                                <input class="form-control" autocomplete="off" placeholder="" pattern="[\d,]*">
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-xs-12 form-group kyc-revenue-capital">
+                                                            <label class="control-label">Approx Annual Turnover*<p>(AED Equivalent Upto 2 decimal places)</p></label>
+                                                            <input class="form-control" autocomplete="off" placeholder="" pattern="[\d,]*">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel panel-primary">
+                                                        <div class="col-xs-12 col-md-4 panel-heading">
+                                                            <div class="form-group kyc-revenue-capital">
+                                                                <label class="">Cash Transactions</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group trade-licence-cashtb">
+                                                            <table class="table table-bordered table-condensed table-responsive">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Transaction
+                                                                        </th>
+                                                                        <th>Average # / Month*
+                                                                        </th>
+                                                                        <th>Average Amount / Month (AED Equivalent upto 2 decimal places)
+                                                                        </th>
+                                                                        <th>Max Amount in Single Transation (AED Equivalent upto 2 decimal places)
+                                                                        </th>
+                                                                        <th>Purpose of Payment*
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label></label>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label></label>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel panel-primary">
+                                                        <div class="col-xs-12 col-md-4 panel-heading">
+                                                            <div class="form-group kyc-revenue-capital">
+                                                                <label class="">Remittances</label>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group trade-licence-cashtb">
+                                                            <table class="table table-bordered table-condensed table-responsive">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Transaction
+                                                                        </th>
+                                                                        <th>Average # / Month*
+                                                                        </th>
+                                                                        <th>Average Amount / Month (AED Equivalent upto 2 decimal places)*
+                                                                        </th>
+                                                                        <th>Max Amount in Single Transaction (AED Equivalent upto 2 decimal placess)*
+                                                                        </th>
+                                                                        <th>Countries of Remittance*
+                                                                        </th>
+                                                                        <th>Purpose of Payment*
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label></label>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label></label>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel panel-primary">
+                                                        <div class="col-xs-12 col-md-4 panel-heading">
+                                                            <div class="form-group kyc-revenue-capital">
+
+                                                                <label class="">Cheques</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group trade-licence-cashtb">
+                                                            <table class="table table-bordered table-condensed table-responsive">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Transaction
+                                                                        </th>
+                                                                        <th>Average # / Month*
+                                                                        </th>
+                                                                        <th>Average Amount / Month*(AED Equivalent upto 2 decimal places)
+                                                                        </th>
+                                                                        <th>Max Amount in Single Transaction (AED Equivalent upto 2 decimal places)
+                                                                        </th>
+                                                                        <th>Purpose of Payment*
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label></label>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label></label>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="form-control" placeholder="">
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-xs-12">
+                                                            <div class="form-group kyc-revenue-capital">
+                                                                <label>
+                                                                    Details of Line of Business Activity* <p>(e.g. Nature of business, Products Traded etc.)</p>
+                                                                </label>
+                                                                <input class="form-control" type="text"></input>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-6 col-xs-12">
+                                                            <div class="form-group kyc-revenue-business">
+                                                                <label class="control-label">Number of Employees*<p>e.g. Nature of business, Products Traded etc.</p></label>
+                                                                <input class="form-control" autocomplete="off" placeholder="" pattern="[\d,]*">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-xs-12">
+                                                            <div class="form-group kyc-revenue-capital">
+                                                                <label class="">Key countries where the business/suppliers/customers have a geographical presence.*</label>
+                                                                <input class="form-control" autocomplete="off" placeholder="" pattern="[\d,]*">
+
+                                                                <!-- <textarea class="form-control" placeholder="Key countries " rows="1"></textarea> -->
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-xs-12">
+                                                            <div class="form-group kyc-revenue-capital">
+                                                                <label class="control-label">Upload Supporting Documents*</label>
+                                                                <div class="form-control kyc-upload-doc">
+                                                                    <input type="file" class="btn btn-primary" value="upload"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-xs-12 form-group kyc-revenue-capital">
+                                                            <label class="control-label">Number of Branches*</label>
+                                                            <input class="form-control" autocomplete="off" placeholder="" pattern="[\d,]*">
+
+                                                        </div>
+                                                        <div class="col-md-6 col-xs-12">
+                                                            <div class="form-group kyc-revenue-capital">
+                                                                <label class=" control-label">Trade Licence of the company*</label>
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="step-22">
+
+                                        </div>
+                                    </div>
+                                    <ul class="list-inline pull-right kyc-form1-detail">
+                                        <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                        <li><button type="button" class="btn btn-primary next-step">NEXT</button></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" role="tabpanel" id="step3">
+                                    <div class="step33">
+                                        <div class="row kyc-section-revenue">
+                                            <div id="mainCont" class="container">
+
+                                                <div class="panel panel-primary">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-12 ">
+                                                            <div class="">
+                                                                <div class="kyc-formshare-title">
+                                                                    <div class="form-group">
+
+                                                                        <label class="">Is the shareholding pattern same as in table below?</label>
+                                                                        <div class="input-group">
+                                                                            <div class="btn-group" data-toggle="buttons">
+                                                                                <label class="">
+                                                                                    <input type="radio" name="shrPatt" value="Y" checked><strong>Yes</strong>
+                                                                                </label>
+                                                                                <label class="">
+                                                                                    <input type="radio" name="shrPatt" value="N"><strong>No</strong>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-md-4 panel-heading">
+                                                        <div class="form-group">
+                                                            <label class="">Cash Transactions</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-group trade-licence-cashtb">
+                                                        <table class="table table-bordered table-condensed table-responsive kyc-share-table disabled" id="shrTbl">
+                                                            <colgroup class="axn">
+                                                                <col width="4%">
+                                                                <col width="8%">
+                                                                <col width="8%">
+                                                                <col width="8%">
+                                                                <col width="8%">
+                                                                <col width="8%">
+                                                                <col width="8%">
+                                                                <col width="8%">
+                                                                <col width="8%">
+                                                                <col width="8%">
+                                                                <col width="8%">
+                                                                <col width="8%">
+                                                                <col width="8%">
+                                                            </colgroup>
+                                                            <colgroup class="normal">
+                                                                <col width="0%">
+                                                                <col width="8.33%">
+                                                                <col width="8.33%">
+                                                                <col width="8.33%">
+                                                                <col width="8.33%">
+                                                                <col width="8.33%">
+                                                                <col width="8.33%">
+                                                                <col width="8.33%">
+                                                                <col width="8.33%">
+                                                                <col width="8.33%">
+                                                                <col width="8.33%">
+                                                                <col width="8.33%">
+                                                                <col width="8.33%">
+                                                            </colgroup>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="axn"></th>
+                                                                    <th>Full Name
+                                                                    </th>
+                                                                    <th>Share %
+                                                                    </th>
+                                                                    <th>Position/Title
+                                                                    </th>
+                                                                    <th>Local Address
+                                                                    </th>
+                                                                    <th>Resident
+                                                                    </th>
+                                                                    <th>Resident
+                                                                    </th>
+                                                                    <th>PEP
+                                                                    </th>
+                                                                    <th>Home Country Address / Country of Residence
+                                                                    </th>
+                                                                    <th>Estimated Net worth in AED
+                                                                    </th>
+                                                                    <th>Source of Income / Wealth
+                                                                    </th>
+                                                                    <th>In UAE since
+                                                                    </th>
+                                                                    <th>Professional Background / Business during past 5-10 yrs
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+
+                                                                    <td class="text-center axn">
+                                                                        <span class="glyphicon glyphicon-minus text-danger"></span>
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" max="100" min="0" step="0.01" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <textarea class="form-control" rows="2" placeholder=""></textarea>
+                                                                    </td>
+                                                                    <td>
+
+                                                                        <!-- <div class="btn-group" data-toggle="buttons">
+                                                                            <label class="btn btn-default">
+                                                                                <input type="radio" name="res_0" value="Y" class="">Yes
+                                                                            
+                                                                            
+                                                                            
+                                                                            </label>
+                                                                            <label class="btn btn-default active">
+                                                                                <input type="radio" name="res_0" value="N" class="">No
+                                                                            
+                                                                            
+                                                                            
+                                                                            </label>
+                                                                        </div> -->
+                                                                        <select class="selectpicker">
+                                                                            <option style="color:#888;">Select Option</option>
+                                                                            <option>Yes</option>
+                                                                            <option>No</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+
+                                                                        <select class="selectpicker">
+                                                                            <option style="color:#888;">Select Option</option>
+                                                                            <option>Yes</option>
+                                                                            <option>No</option>
+                                                                        </select>
+
+                                                                        <!-- <div class="btn-group" data-toggle="buttons">
+                                                                            <label class="btn btn-default">
+                                                                                <input type="radio" name="pep_0" value="Y"><strong>Yes</strong>
+                                                                            
+                                                                            </label>
+                                                                            <label class="btn btn-default active">
+                                                                                <input type="radio" name="pep_0" value="N"><strong>No</strong>
+                                                                            
+                                                                            </label>
+                                                                        </div> -->
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <textarea class="form-control" rows="2" placeholder=""></textarea>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="new">
+                                                                    <td class="text-center axn">
+                                                                        <span class="glyphicon glyphicon-plus text-success"></span>
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="Full Name">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" max="100" min="0" step="0.01" placeholder="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <textarea class="form-control" rows="2" placeholder="Local Address"></textarea>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="selectpicker">
+                                                                            <option style="color:#888;">Select Option</option>
+                                                                            <option>Yes</option>
+                                                                            <option>No</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="selectpicker">
+                                                                            <option style="color:#888;">Select Option</option>
+                                                                            <option>Yes</option>
+                                                                            <option>No</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="if applicable">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" placeholder="to be obtained on best effort basis">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <textarea class="form-control" rows="2" placeholder="during past 5-10 yrs"></textarea>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="panel panel-primary">
+                                                    <div class="row">
+                                                    
+                                                    <div class="col-sm-12 panel-heading">
+                                                        <div class="form-group">
+                                                            <label class="">Is the shareholding pattern same as in table below?</label>
+                                                            <div class="input-group">
+                                                                <div class="btn-group" data-toggle="buttons">
+                                                                    <label class="">
+                                                                        <input type="radio" name="shrComp" value="Y"><strong>Yes</strong>
+
+
+
+                                                                    </label>
+                                                                    <label class="active">
+                                                                        <input type="radio" name="shrComp" value="N" checked><strong>No</strong>
+
+
+
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        </div>
+                                                    <div class="form-group trade-licence-cashtb">
+                                                        <table class="table table-bordered table-condensed table-responsive disabled" id="compTbl">
+                                                            <colgroup class="axn">
+                                                                <col width="3%">
+                                                                <col width="10%">
+                                                                <col width="5%">
+                                                                <col width="10%">
+                                                                <col width="10%">
+                                                                <col width="10%">
+                                                                <col width="5%">
+                                                                <col width="5%">
+                                                                <col width="5%">
+                                                                <col width="5%">
+                                                                <col width="30%">
+                                                            </colgroup>
+                                                            <colgroup class="normal">
+                                                                <col width="10%">
+                                                                <col width="5%">
+                                                                <col width="10%">
+                                                                <col width="10%">
+                                                                <col width="10%">
+                                                                <col width="5%">
+                                                                <col width="5%">
+                                                                <col width="5%">
+                                                                <col width="5%">
+                                                                <col width="30%">
+                                                            </colgroup>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="axn"></th>
+                                                                    <th>Name of the Entity
+                                                                    </th>
+                                                                    <th>Share %
+                                                                    </th>
+                                                                    <th>Mention names / details of Shareholders of this entity
+                                                                    </th>
+                                                                    <th>Local Address
+                                                                    </th>
+                                                                    <th>Home Country Address / Country of Incorporation
+                                                                    </th>
+                                                                    <th>Trade License / Reg Number
+                                                                    </th>
+                                                                    <th>TL Expiry date
+                                                                    </th>
+                                                                    <th>Resident
+                                                                    </th>
+                                                                    <th>PEP
+                                                                    </th>
+                                                                    <th>PEP Details (if any)
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="text-center axn">
+                                                                        <span class="glyphicon glyphicon-edit"></span>
+                                                                    </td>
+                                                                    <td>XYZ Company Pvt. ltd.
+                                                                    </td>
+                                                                    <td>5.23%
+                                                                    </td>
+                                                                    <td>person one name, comp two name
+                                                                    </td>
+                                                                    <td>1st Floor, Phase 1 Kalyani Platina, No. 24, EPIP Zone 2, Whitefield, Bengaluru, Karnataka 560066
+                                                                    </td>
+                                                                    <td>India
+                                                                    </td>
+                                                                    <td>1234567890
+                                                                    </td>
+                                                                    <td>April 10,2020
+                                                                    </td>
+                                                                    <td>Yes
+                                                                    </td>
+                                                                    <td>Yes
+                                                                    </td>
+                                                                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="new">
+                                                                    <td class="text-center axn">
+                                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                                    </td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="kyc-share-documents">
+
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label kyc-share-doc-label">PP of POA #1 to n* with name of shareholder whose PP is being uploaded</label>
+                                                                    <!-- <div class="form-control kyc-upload-doc">
+                                                                        <input type="file" class="btn btn-primary" value="upload">
+                                                                    </div> -->
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">TL/Certificate of Good Standing</label>
+                                                                    <div class="form-control kyc-upload-doc-form">
+                                                                        <input type="file" class="btn btn-primary" value="upload">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label kyc-share-doc-label">Visa of POA #1 to n* with name of shareholder whose VISA is being uploaded</label>
+                                                                    <!-- <div class="form-control kyc-upload-doc">
+                                                                        <input type="file" class="btn btn-primary" value="upload">
+                                                                    </div> -->
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Any Legal document showing shareholding pattern</label>
+                                                                    <div class="form-control kyc-upload-doc-form">
+                                                                        <input type="file" class="btn btn-primary" value="upload">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label kyc-share-doc-label">EID of POA #1 to n* with name of shareholder whose EID is being uploaded</label>
+                                                                    <!-- <div class="form-control kyc-upload-doc">
+                                                                        <input type="file" class="btn btn-primary" value="upload">
+                                                                    </div> -->
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="col-md-6 col-xs-12" style="visibility: hidden;">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Any Legal document showing shareholding pattern</label>
+                                                                    <!-- <div class="form-control kyc-upload-doc">
+                                                                        <input type="file" class="btn btn-primary" value="upload">
+                                                                    </div> -->
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label kyc-upload-doc-form">Amended MOA*</label>
+                                                                    <!-- <div class="form-control kyc-upload-doc">
+                                                                                    <input type="file" class="btn btn-primary" value="upload">
+                                                                    </div> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <p class="kyc-ant-company">If Company above is owned by Another Company*</p>
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label kyc-share-doc-label">TL/Certificate of Good Standing</label>
+                                                                <div class="form-control kyc-upload-doc-form">
+                                                                    <input type="file" class="btn btn-primary" value="upload">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Any Legal document showing shareholding pattern</label>
+                                                                <div class="form-control kyc-upload-doc-form">
+                                                                    <input type="file" class="btn btn-primary" value="upload">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label kyc-share-doc-label">Organogram Upload</label>
+                                                                <div class="form-control kyc-upload-doc-form">
+                                                                    <input type="file" class="btn btn-primary" value="upload">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Any Legal document showing shareholding pattern</label>
+                                                                <div class="form-control kyc-upload-doc-form">
+                                                                    <input type="file" class="btn btn-primary" value="upload">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label kyc-share-doc-label">Address proof of the ultimate beneficiary owner</label>
+                                                                <div class="form-control kyc-upload-doc-form">
+                                                                    <input type="file" class="btn btn-primary" value="upload">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- <div class="row">
+                                                                    <div class="col-xs-6 form-group" id="amndMoa">
+                                                                                    <label class="col-sm-6 control-label">Amended MOA*</label>
+                                                                                    <div class="input-group">
+                                                                                                    <input type="file" class="">
+                                                                                    </div>
+                                                                    </div>
+                                                    </div>
+</div>
+                                    <div class="row">
+    <div class="col-sm-6 col-xs-12 form-group">
+        <label class="col-sm-6 control-label">Organogram Upload</label>
+        <div class="input-group">
+            <input type="file" class="" />
+        </div>
+    </div>
+</div>
+                                    
+                                    <div class="row">
+    <div class="col-sm-6 col-xs-12 form-group">
+        <label class="col-sm-6 control-label">Signed Scanned FATCA form upload</label>
+        <div class="input-group">
+            <input type="file" class="" />
+        </div>
+    </div>
+</div> -->
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-xs-12 kyc-comments-form">
+                                                            <div class="form-group">
+                                                                <label class="">Comments</label>
+                                                                <div class="input-group col-md-12">
+                                                                    <textarea class="form-control" placeholder="" rows="1"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- <footer>
+                                                                                    <div>
+                                                                                                    <a href="#">Disclaimer</a>
+                                                                                    </div>
+                                                    </footer>  -->  
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul class="list-inline pull-right kyc-form1-detail">
+                                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                            <!-- <li><button type="button" class="btn btn-default next-step">Skip</button></li> -->
+                                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                                        </ul>
+                                    </div>
+
+
+
+                                    <!-- <div class="tab-pane" role="tabpanel" id="complete">
+                                        <div class="step44">
+                                            <h5>Completed</h5>
+                                            
+                                          
+                                        </div>
+                                    </div> -->
+                                    <div class="clearfix"></div>
+                                </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <script src="resources/js/jquery.min.js"></script>
+        <script>
+            $(document).on("ready", function () {
+                //alert("ready");
+                $("head").append($("<link>", {
+                    "rel": "stylesheet",
+                    "href": "resources/css/bootstrap.min.css"
+                })).append($("<link>", {
+                    "rel": "stylesheet",
+                    "href": "resources/css/kyc.css"
+                }))
+                /*.append($("<link>", {
+                 "rel": "stylesheet",
+                 "href": "resources/css/datatables.min.css"
+                 }));*/
+                var scrpt = [];
+
+                scrpt[0] = $("<script>", {
+                    "src": "resources/js/bootstrap.min.js",
+                    "async": true,
+                    "defer": true
+                })
+                scrpt[1] = $("<script>", {
+                    "src": "resources/js/datatables.min.js",
+                    "async": true,
+                    "defer": true
+                })
+
+                scrpt[2] = $("<script>", {
+                    "src": "resources/js/dataTables.bootstrap.min.js",
+                    "async": true,
+                    "defer": true
+                });
+                $.fn.scrollTo = function () {
+                    $('#mainCont').animate({
+                        scrollTop: this.offset().top,
+                        scrollLeft: this.offset().left
+                    })
+                }
+                ;
+
+            });
+            $(window).on("load", function () {
+                //alert("load");
+                $("#blocker").css({
+                    opacity: 0,
+                    zIndex: -1,
+                    display: "none"
+                });
+                //$("table").DataTable();
+                $("body").removeClass("noOverFLow");
+            });
+        </script>
+        
+        <script src="resources/js/bootstrap.min.js" defer="defer"></script>
+        <script src="resources/js/kyc-lib.js" defer="defer"></script>
+
+        <!-- popup -->
+
+        <div id="compEdit" class="modal fade">
+            <div class="modal-lg modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="AddUser_popup_title">Add / Edit Shareholders Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="panel panel-default">
+                            <div class="panel-body in">
+                                <div class="row">
+                                    <div class="col-sm-4 col-xs-12 form-group">
+                                        <label class="col-xs-12 control-label">Name of the Entity</label>
+                                        <div class="col-xs-12 input-group">
+                                            <input class="form-control" autocomplete="off" placeholder="Full Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 form-group">
+                                        <label class="col-xs-12 control-label">Share %</label>
+                                        <div class="col-xs-12 input-group">
+                                            <input class="form-control" autocomplete="off" placeholder="in %">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 form-group">
+                                        <label class="col-xs-12 control-label">Mention names / details of Shareholders of this entity</label>
+                                        <div class="col-xs-12 input-group">
+                                            <input class="form-control" autocomplete="off" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 form-group">
+                                        <label class="col-xs-12 control-label">Home Country Address / Country of Incorporation</label>
+                                        <div class="col-xs-12 input-group">
+                                            <input class="form-control" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 form-group">
+                                        <label class="col-xs-12 control-label">Trade License / Reg Number</label>
+                                        <div class="col-xs-12 input-group">
+                                            <input class="form-control" placeholder="to be obtained on best effort basis">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 form-group">
+                                        <label class="col-xs-12 control-label">TL Expiry date</label>
+                                        <div class="col-xs-12 input-group">
+                                            <input class="form-control" placeholder="to be obtained on best effort basis">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-12 form-group">
+                                        <label class="col-xs-12 control-label">Resident</label>
+                                        <div class="col-xs-12 input-group">
+                                            <div class="btn-group" data-toggle="buttons">
+                                                <label class="btn btn-default">
+                                                    <input type="radio" name="res_0" value="Y">Yes
+
+
+
+                                                </label>
+                                                <label class="btn btn-default active">
+                                                    <input type="radio" name="res_0" value="N">No
+
+
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-12 form-group">
+                                        <label class="col-xs-12 control-label">PEP</label>
+                                        <div class="col-xs-12 input-group">
+                                            <div class="btn-group" data-toggle="buttons">
+                                                <label class="btn btn-default">
+                                                    <input type="radio" name="res_0" value="Y">Yes
+
+
+
+                                                </label>
+                                                <label class="btn btn-default active">
+                                                    <input type="radio" name="res_0" value="N">No
+
+
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 form-group">
+                                        <label class="col-xs-12 control-label">PEP Details (if any)</label>
+                                        <div class="col-sm-12 input-group">
+                                            <textarea class="form-control" autocomplete="off" placeholder="PEP Details"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 form-group">
+                                        <label class="col-xs-12 control-label">Local Address</label>
+                                        <div class="col-xs-12 input-group">
+                                            <textarea class="col-sm-6 form-control" autocomplete="off" placeholder="Local Address"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body in">
+                                <div class="row">
+                                    <div class="col-sm-4 col-xs-12 form-group" data-toggle="tooltip" title="This document should not be older than an year">
+                                        <label class="col-sm-12 control-label"> TL/Certficate of Good Standing</label>
+                                        <div class="col-sm-12 input-group">
+                                            <input type="file" class="" autocomplete="off" placeholder="Number of Employees" pattern="[\d,]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 form-group" data-toggle="tooltip" title="This document should not be older than an year">
+                                        <label class="col-sm-12 control-label"> Any legal document showing shareholding pattern</label>
+                                        <div class="col-sm-12 input-group">
+                                            <input type="file" class="" autocomplete="off" placeholder="Number of Employees" pattern="[\d,]*">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+                    $(document).ready(function () {
+                        //Initialize tooltips
+                        $('.nav-tabs > li a[title]').tooltip();
+
+                        //Wizard
+                        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+                            var $target = $(e.target);
+
+                            if ($target.parent().hasClass('disabled')) {
+                                return false;
+                            }
+                        });
+
+                        $(".next-step").click(function (e) {
+
+                            var $active = $('.wizard .nav-tabs li.active');
+                            $active.next().removeClass('disabled');
+                            nextTab($active);
+
+                        });
+                        $(".prev-step").click(function (e) {
+
+                            var $active = $('.wizard .nav-tabs li.active');
+                            prevTab($active);
+
+                        });
+                    });
+
+                    function nextTab(elem) {
+                        $(elem).next().find('a[data-toggle="tab"]').click();
+                    }
+                    function prevTab(elem) {
+                        $(elem).prev().find('a[data-toggle="tab"]').click();
+                    }
+
+
+        //according menu
+
+                    $(document).ready(function ()
+                    {
+                        //Add Inactive Class To All Accordion Headers
+                        $('.accordion-header').toggleClass('inactive-header');
+
+                        //Set The Accordion Content Width
+                        var contentwidth = $('.accordion-header').width();
+                        $('.accordion-content').css({});
+
+                        //Open The First Accordion Section When Page Loads
+                        $('.accordion-header').first().toggleClass('active-header').toggleClass('inactive-header');
+                        $('.accordion-content').first().slideDown().toggleClass('open-content');
+
+                        // The Accordion Effect
+                        $('.accordion-header').click(function () {
+                            if ($(this).is('.inactive-header')) {
+                                $('.active-header').toggleClass('active-header').toggleClass('inactive-header').next().slideToggle().toggleClass('open-content');
+                                $(this).toggleClass('active-header').toggleClass('inactive-header');
+                                $(this).next().slideToggle().toggleClass('open-content');
+                            }
+
+                            else {
+                                $(this).toggleClass('active-header').toggleClass('inactive-header');
+                                $(this).next().slideToggle().toggleClass('open-content');
+                            }
+                        });
+
+                        return false;
+                    });
+
+
+        </script>
+    </body>
+</html>
